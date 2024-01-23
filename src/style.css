@@ -14,7 +14,7 @@ body {
   height: 100vh;
   margin: 0;
   padding: 0;
-  background-color: #e2e8f0;
+  background-color: rgb(207, 237, 249);
   font-family: sans-serif;
 }
 
@@ -83,6 +83,7 @@ form input {
   padding: 32px;
   background-color: white;
   border-radius: 30px;
+  box-shadow: 5px 5px 10px rgb(168, 224, 252);
 }
 
 .today {
