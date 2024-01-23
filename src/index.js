@@ -52,7 +52,6 @@ async function getWheatherData(location) {
       `http://api.weatherapi.com/v1/forecast.json?key=6f555dcee5874f618c993013242001&q=${location}&days=4`,
       { mode: 'cors' },
     );
-
     const data = await response.json();
 
     if (!response.ok) {
@@ -66,4 +65,9 @@ async function getWheatherData(location) {
   }
 }
 
-getWheatherData('baku');
+const input = document.querySelector('form input');
+const searchBtn = document.querySelector('form button');
+
+searchBtn.addEventListener('click', () => {
+  getWheatherData(input.value);
+});
