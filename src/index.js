@@ -51,7 +51,6 @@ function getRequiredData(data) {
 }
 
 function displayData(data) {
-  main.textContent = '';
   main.className = 'main';
 
   const days = [
@@ -165,13 +164,29 @@ function displayData(data) {
   });
 }
 
+function showLoader() {
+  main.textContent = '';
+  main.className = 'main default';
+  const loader = document.createElement('div');
+  loader.classList.add('loader');
+  main.append(loader);
+}
+
+function hideLoader() {
+  main.textContent = '';
+}
+
 async function getWeatherData(location) {
   try {
+    showLoader();
+
     const response = await fetch(
       `http://api.weatherapi.com/v1/forecast.json?key=6f555dcee5874f618c993013242001&q=${location}&days=4`,
       { mode: 'cors' },
     );
     const data = await response.json();
+
+    hideLoader();
 
     if (!response.ok) {
       throw new Error(data.error.message);
@@ -179,7 +194,6 @@ async function getWeatherData(location) {
 
     const requiredData = getRequiredData(data);
     displayData(requiredData);
-    console.log(requiredData);
   } catch (error) {
     main.className = 'main default';
     main.textContent = error.message;
