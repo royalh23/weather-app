@@ -181,7 +181,7 @@ async function getWeatherData(location) {
     displayData(requiredData);
     console.log(requiredData);
   } catch (error) {
-    main.className = 'main main-error';
+    main.className = 'main default';
     main.textContent = error.message;
   }
 }
