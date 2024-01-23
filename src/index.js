@@ -128,7 +128,7 @@ function displayData(data) {
 
   data.forecast.forecastday.forEach((nextDay) => {
     const forecastDay = document.createElement('div');
-    const wheatherMain = document.createElement('div');
+    const weatherMain = document.createElement('div');
     const day = document.createElement('div');
     const tempAndHumidity = document.createElement('div');
     const nextDayTemp = document.createElement('div');
@@ -137,8 +137,8 @@ function displayData(data) {
     const nextDayHumidity = document.createElement('div');
     const nextDayHumidityTitle = document.createElement('div');
     const nextDayHumidityText = document.createElement('div');
-    const wheatherAdd = document.createElement('div');
-    const wheatherIcon = new Image();
+    const weatherAdd = document.createElement('div');
+    const weatherIcon = new Image();
     const wheaterCondition = document.createElement('div');
 
     day.textContent = days[new Date(nextDay.date).getDay()];
@@ -146,26 +146,26 @@ function displayData(data) {
     nextDayTempText.textContent = `${nextDay.day.avgtemp_c} °C`;
     nextDayHumidityTitle.textContent = 'Humidity:';
     nextDayHumidityText.textContent = `${nextDay.day.avghumidity} %`;
-    wheatherIcon.src = `https://${nextDay.day.condition.icon.slice(2)}`;
+    weatherIcon.src = `https://${nextDay.day.condition.icon.slice(2)}`;
     wheaterCondition.textContent = nextDay.day.condition.text;
 
     nextDayTemp.classList.add('temp');
     nextDayHumidity.classList.add('humidity');
-    wheatherMain.classList.add('first');
-    wheatherAdd.classList.add('second');
+    weatherMain.classList.add('first');
+    weatherAdd.classList.add('second');
     forecastDay.classList.add('forecast');
 
     nextDayTemp.append(nextDayTempTitle, nextDayTempText);
     nextDayHumidity.append(nextDayHumidityTitle, nextDayHumidityText);
     tempAndHumidity.append(nextDayTemp, nextDayHumidity);
-    wheatherMain.append(day, tempAndHumidity);
-    wheatherAdd.append(wheatherIcon, wheaterCondition);
-    forecastDay.append(wheatherMain, wheatherAdd);
+    weatherMain.append(day, tempAndHumidity);
+    weatherAdd.append(weatherIcon, wheaterCondition);
+    forecastDay.append(weatherMain, weatherAdd);
     main.append(forecastDay);
   });
 }
 
-async function getWheatherData(location) {
+async function getWeatherData(location) {
   try {
     const response = await fetch(
       `http://api.weatherapi.com/v1/forecast.json?key=6f555dcee5874f618c993013242001&q=${location}&days=4`,
@@ -187,5 +187,5 @@ async function getWheatherData(location) {
 }
 
 searchBtn.addEventListener('click', () => {
-  getWheatherData(input.value);
+  getWeatherData(input.value);
 });
