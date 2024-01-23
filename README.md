@@ -1,5 +1,7 @@
-This is a webpack template repository, which includes as default:
+This project creates a simple Weather App that shows weather-related data about an inputted
+city/country. Along with today's weather, it also displays the forecast for the next 3 days.
+This project implements the concepts below:
 
-- Webpack (devDependency);
-- ESlint (devDependency);
-- Prettier (devDependency).
+- Asynchronous code using async/await;
+- Utilizing APIs to fetch data;
+- Working with JSON.
