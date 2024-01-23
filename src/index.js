@@ -3,6 +3,7 @@ import './style.css';
 const input = document.querySelector('form input');
 const searchBtn = document.querySelector('form button');
 const main = document.querySelector('.main');
+const form = document.querySelector('form');
 
 function getForecastData(day, data) {
   return {
@@ -200,6 +201,9 @@ async function getWeatherData(location) {
   }
 }
 
-searchBtn.addEventListener('click', () => {
-  getWeatherData(input.value);
+searchBtn.addEventListener('click', (e) => {
+  if (form.checkValidity()) {
+    e.preventDefault();
+    getWeatherData(input.value);
+  }
 });
