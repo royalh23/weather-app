@@ -2,8 +2,10 @@ import './style.css';
 
 const input = document.querySelector('form input');
 const searchBtn = document.querySelector('form button');
+const tempBtn = document.querySelector('.temp-btn');
 const main = document.querySelector('.main');
 const form = document.querySelector('form');
+let requiredData;
 
 function getForecastData(day, data) {
   return {
@@ -53,6 +55,7 @@ function getRequiredData(data) {
 
 function displayData(data) {
   main.className = 'main';
+  tempBtn.textContent = '°C';
 
   const days = [
     'Sunday',
@@ -96,6 +99,8 @@ function displayData(data) {
   icon.classList.add('icon');
   condition.classList.add('condition');
   todayAddData.classList.add('additional-data');
+  tempText.classList.add('today-temp');
+  feelslikeText.classList.add('today-feels-like');
 
   city.textContent = data.location.name;
   country.textContent = data.location.country;
@@ -177,6 +182,39 @@ function hideLoader() {
   main.textContent = '';
 }
 
+function toggleTemp(e, data) {
+  console.log('clicked!');
+  const todayTemp = document.querySelector('.today-temp');
+  const todayFeelsLike = document.querySelector('.today-feels-like');
+  const forecastTemps = Array.from(
+    document.querySelectorAll('.temp > div:last-child'),
+  );
+
+  if (e.target.textContent === '°C') {
+    e.target.textContent = '°F';
+    todayTemp.textContent = `${data.current.temp_f} °F`;
+    todayFeelsLike.textContent = `${data.current.feelslike_f} °F`;
+    forecastTemps.forEach((temp) => {
+      temp.textContent = `${
+        data.forecast.forecastday[forecastTemps.indexOf(temp)].day.avgtemp_f
+      } °F`;
+    });
+  } else {
+    e.target.textContent = '°C';
+    todayTemp.textContent = `${data.current.temp_c} °C`;
+    todayFeelsLike.textContent = `${data.current.feelslike_c} °C`;
+    forecastTemps.forEach((temp) => {
+      temp.textContent = `${
+        data.forecast.forecastday[forecastTemps.indexOf(temp)].day.avgtemp_c
+      } °C`;
+    });
+  }
+}
+
+function handleTempClick(e) {
+  toggleTemp(e, requiredData);
+}
+
 async function getWeatherData(location) {
   try {
     showLoader();
@@ -193,9 +231,11 @@ async function getWeatherData(location) {
       throw new Error(data.error.message);
     }
 
-    const requiredData = getRequiredData(data);
+    requiredData = getRequiredData(data);
     displayData(requiredData);
+    tempBtn.addEventListener('click', handleTempClick);
   } catch (error) {
+    tempBtn.removeEventListener('click', handleTempClick);
     main.className = 'main default';
     main.textContent = error.message;
   }
