@@ -183,7 +183,6 @@ function hideLoader() {
 }
 
 function toggleTemp(e, data) {
-  console.log('clicked!');
   const todayTemp = document.querySelector('.today-temp');
   const todayFeelsLike = document.querySelector('.today-feels-like');
   const forecastTemps = Array.from(
