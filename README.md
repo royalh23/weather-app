@@ -5,3 +5,5 @@ This project implements the concepts below:
 - Asynchronous code using async/await;
 - Utilizing APIs to fetch data;
 - Working with JSON.
+
+The project is live at: https://royalh23.github.io/weather-app/
