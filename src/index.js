@@ -42,6 +42,7 @@ function getRequiredData(data) {
       feelslike_f: data.current.feelslike_f,
       humidity: data.current.humidity,
       wind_kph: data.current.wind_kph,
+      wind_mph: data.current.wind_mph,
     },
     forecast: {
       forecastday: [
@@ -101,6 +102,7 @@ function displayData(data) {
   todayAddData.classList.add('additional-data');
   tempText.classList.add('today-temp');
   feelslikeText.classList.add('today-feels-like');
+  windSpeedText.classList.add('wind-speed');
 
   city.textContent = data.location.name;
   country.textContent = data.location.country;
@@ -185,6 +187,7 @@ function hideLoader() {
 function toggleTemp(e, data) {
   const todayTemp = document.querySelector('.today-temp');
   const todayFeelsLike = document.querySelector('.today-feels-like');
+  const windSpeed = document.querySelector('.wind-speed');
   const forecastTemps = Array.from(
     document.querySelectorAll('.temp > div:last-child'),
   );
@@ -193,6 +196,7 @@ function toggleTemp(e, data) {
     e.target.textContent = '°F';
     todayTemp.textContent = `${data.current.temp_f} °F`;
     todayFeelsLike.textContent = `${data.current.feelslike_f} °F`;
+    windSpeed.textContent = `${data.current.wind_mph} mi/h`;
     forecastTemps.forEach((temp) => {
       temp.textContent = `${
         data.forecast.forecastday[forecastTemps.indexOf(temp)].day.avgtemp_f
@@ -202,6 +206,7 @@ function toggleTemp(e, data) {
     e.target.textContent = '°C';
     todayTemp.textContent = `${data.current.temp_c} °C`;
     todayFeelsLike.textContent = `${data.current.feelslike_c} °C`;
+    windSpeed.textContent = `${data.current.wind_kph} km/h`;
     forecastTemps.forEach((temp) => {
       temp.textContent = `${
         data.forecast.forecastday[forecastTemps.indexOf(temp)].day.avgtemp_c
