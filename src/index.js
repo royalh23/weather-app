@@ -108,7 +108,9 @@ function displayData(data) {
   country.textContent = data.location.country;
   date.textContent = `${
     days[new Date(data.location.localtime.slice(0, 10)).getDay()]
-  }, ${data.location.localtime.slice(0, 10)}`;
+  }, ${data.location.localtime.slice(0, 10)}, ${data.location.localtime.slice(
+    11,
+  )}`;
   icon.src = `https://${data.current.condition.icon.slice(2)}`;
   condition.textContent = data.current.condition.text;
 
