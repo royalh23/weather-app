@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'Fancy';
+  src: url(./fonts/fancy.woff2);
+}
+
 html {
   box-sizing: border-box;
 }
@@ -10,7 +15,9 @@ html {
 
 body {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
   height: 100vh;
   margin: 0;
   padding: 0;
@@ -18,13 +25,32 @@ body {
   font-family: sans-serif;
 }
 
+#header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 8vh;
+  padding: 32px 15px;
+  background-color: #088bd2;
+  color: white;
+}
+
+.header-title {
+  flex-grow: 1;
+  font-size: 2.2rem;
+  text-align: center;
+  font-family: 'Fancy', sans-serif;
+  font-weight: bold;
+}
+
 #content {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 25px;
-  padding: 25px 0;
+  gap: 20px;
+  padding: 0 0 25px 0;
   height: inherit;
   width: 85%;
 }
@@ -34,7 +60,7 @@ form {
   justify-content: center;
   align-items: center;
   gap: 10px;
-  padding: 15px;
+  /* padding: 15px; */
 }
 
 form input {
@@ -220,14 +246,11 @@ form input {
 }
 
 .temp-btn {
-  position: fixed;
-  top: 20px;
-  right: 20px;
   width: 45px;
   height: 45px;
   border-radius: 50%;
   border: 0;
   font-size: 1.3rem;
-  background-color: rgb(39, 173, 251);
-  color: white;
+  background-color: #ffffff;
+  color: rgb(6, 74, 123);
 }
