@@ -46,9 +46,9 @@ function getRequiredData(data) {
     },
     forecast: {
       forecastday: [
+        getForecastData(0, data),
         getForecastData(1, data),
         getForecastData(2, data),
-        getForecastData(3, data),
       ],
     },
   };
